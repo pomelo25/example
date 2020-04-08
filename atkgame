@@ -1,0 +1,65 @@
+public class HelloWorld{
+
+  class Player{
+    
+    String name;
+    int hp;
+    int atk;
+    
+    public Player(String name, int hp, int atk){
+      this.name = name;
+      this.hp = hp;
+      this.atk = atk;
+    }
+    
+    public void attack(Enemy enemy){
+      enemy.hp -= this.atk;
+      System.out.println("Player attack!");
+    }
+    
+    public boolean isLive(){
+      if(this.hp > 0) return true;
+      else return false;
+    }
+    
+  }
+  
+  class Enemy{
+  
+    String name;
+    int hp;
+    int atk;
+    
+    public Enemy(String name, int hp, int atk){
+      this.name = name;
+      this.hp = hp;
+      this.atk = atk;
+    }
+    
+    public void attack(Player player){
+      player.hp -= this.atk;
+      System.out.println("enemy attack!");
+    }
+    
+    public boolean isLive(){
+      if(this.hp > 0) return true;
+      else return false;
+    }
+  
+  }
+  
+  public static void main(String []arg){
+    Player player = new Player("Aragon", 100, 12);
+    Enemy enemy = new Enemy("Ork", 80, 5);
+    
+    while(true){
+      player.attack(enemy);
+      if(!enemy.isLive()) break;
+      enemy.attack(player);
+      if(!player.isLive()) break;
+    }
+    
+    if(player.isLive()) System.out.println("Player win!");
+    else System.out.println("Enemy win!");
+  }
+}
