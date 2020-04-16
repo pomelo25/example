@@ -1,0 +1,66 @@
+// HelloWorld.java
+
+public class HelloWorld() {
+  
+  public static void main(String []args) {
+    Browser browser = new Browser();
+    browser.imgClick();
+  }
+  
+}
+
+// Browser.java
+
+public class Browser implements OnDownloadListener {
+  
+  public void imgClick() {
+    Downloader loader = new Downloader(this);
+    loader.Start();
+  }
+  
+  public void onDownFinish() {
+    System.out.println("Browser : onDownFinish()");
+  }
+  
+  public void onDownFailed() {
+  
+  }
+  
+}
+
+// Downloader.java
+
+import java.lang.Thread;
+import java.lang.InterruptedException;
+
+public class Downloader {
+  
+  public Downloader(OnDownloaderListener listener) {
+    mListener = listener;
+  }
+  
+  public void Start() {
+    System.out.println("Download Start");
+    
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      System.out.println(e.getMessage());
+    }
+    
+    // callback
+    mListener.onDownFinish();
+    
+  }
+  
+}
+
+// OnDownloadListener.java
+
+public interface OnDownloadListener {
+  
+  public void onDownFinish();
+  public void onDownFailed();
+  
+}
+
