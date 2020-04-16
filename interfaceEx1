@@ -1,0 +1,99 @@
+// Animal.java
+
+public abstract class Animal {
+
+  public String name;
+  
+  public Animal(String name) {
+    this.name = name;
+  }
+  
+  public abstract void Cry();
+
+}
+
+// Pet.java
+
+public interface Pet {
+
+  public void CallFood();
+
+}
+
+// Dog.java
+
+public class Dog extends Animal implements Pet {
+
+  public Dog(String name) {
+    super(name);
+  }
+  
+  public void Cry() {
+    System.out.println(name + "!!!");
+  }
+  
+  public void CallFood() {
+    System.out.println(name + "!!! food!!!");
+  }
+
+}
+
+// Cat.java
+
+public class Cat extends Animal {
+
+  public Cat(String name) {
+    super(name);
+  }
+  
+  public void Cry() {
+    System.out.println(name + "~!");
+  }
+  
+  public void CallFood() {
+    System.out.println(name + "~! food~!");
+  }
+
+}
+
+// Wolf.java
+
+public class Wolf extends Animal {
+  
+  public Wolf(String name){
+    super(name);
+  }
+  
+  public void Cry() {
+    System.out.println(name + "~~~");
+  }
+  
+}
+
+
+
+// HelloWorld.java
+
+public class HelloWorld {
+  
+  public static void main(String []args) {
+    Animal dog = new Dog("dog");
+    Animal cat = new Cat("cat");
+    Animal wolf = new Wolf("wolf");
+    
+    dog.Cry();
+    cat.Cry();
+    wolf.Cry();
+    
+    Pet pet1 = new Cat("cat");
+    Pet pet2 = new Dog("dog");
+    
+    pet1.CallFood();
+    pet2.CallFood();
+    
+    ((Cat)pet1).Cry();
+    
+  
+  }
+  
+}
